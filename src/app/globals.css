@@ -1,0 +1,142 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Custom Fonts ── */
+@font-face {
+  font-family: "Noto Nastaliq Urdu";
+  src: url("/fonts/NotoNastaliqUrdu.woff2") format("woff2");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Noto Naskh Arabic";
+  src: url("/fonts/NotoNaskhArabic.woff2") format("woff2");
+  font-display: swap;
+}
+
+/* ── Base Reset ── */
+@layer base {
+  :root {
+    --background:       250 248 240;
+    --foreground:       10  22  40;
+    --card:             255 255 255;
+    --card-foreground:  10  22  40;
+    --primary:          5   150 105;
+    --primary-foreground: 255 255 255;
+    --secondary:        217 119 6;
+    --secondary-foreground: 255 255 255;
+    --muted:            245 240 232;
+    --muted-foreground: 107 114 128;
+    --border:           229 221 210;
+    --radius:           0.5rem;
+  }
+
+  .dark {
+    --background:       10  22  40;
+    --foreground:       253 248 240;
+    --card:             15  32  68;
+    --card-foreground:  253 248 240;
+    --muted:            26  50  96;
+    --muted-foreground: 156 163 175;
+    --border:           30  58 138;
+  }
+
+  * {
+    border-color: rgb(var(--border));
+  }
+
+  body {
+    @apply bg-ivory-100 text-navy-900 antialiased;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+
+  /* RTL support for Urdu/Arabic */
+  [dir="rtl"] {
+    font-family: theme("fontFamily.urdu");
+    line-height: 2;
+  }
+
+  .arabic-text {
+    font-family: theme("fontFamily.arabic");
+    direction: rtl;
+    line-height: 2.2;
+  }
+
+  .urdu-text {
+    font-family: theme("fontFamily.urdu");
+    direction: rtl;
+    line-height: 2.4;
+  }
+}
+
+/* ── Component Utilities ── */
+@layer components {
+  .btn-primary {
+    @apply bg-emerald-600 hover:bg-emerald-700 text-white font-semibold
+           px-6 py-3 rounded-xl transition-all duration-200
+           shadow-md hover:shadow-lg active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply bg-gold-600 hover:bg-gold-700 text-white font-semibold
+           px-6 py-3 rounded-xl transition-all duration-200
+           shadow-md hover:shadow-lg active:scale-95;
+  }
+
+  .btn-outline {
+    @apply border-2 border-emerald-600 text-emerald-700 hover:bg-emerald-50
+           font-semibold px-6 py-3 rounded-xl transition-all duration-200;
+  }
+
+  .card-library {
+    @apply bg-white rounded-2xl shadow-sm hover:shadow-md
+           border border-sand-200 transition-all duration-300
+           hover:-translate-y-1;
+  }
+
+  .section-heading {
+    @apply text-2xl md:text-3xl font-bold text-navy-900 font-display;
+  }
+
+  .section-subheading {
+    @apply text-gold-700 text-sm font-semibold uppercase tracking-widest mb-2;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1 text-xs font-medium
+           px-2.5 py-1 rounded-full;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-emerald-700 to-gold-600
+           bg-clip-text text-transparent;
+  }
+
+  .islamic-border {
+    @apply border-t-4 border-emerald-600;
+  }
+}
+
+/* ── Shimmer Skeleton ── */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    #f0ebe0 25%,
+    #e5ddd0 50%,
+    #f0ebe0 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* ── PDF Reader ── */
+.pdf-page canvas {
+  max-width: 100%;
+  height: auto !important;
+}
+
+/* ── Scrollbar Styling ── */
+::-webkit-scrollbar       { width: 6px; }
+::-webkit-scrollbar-track { background: #f0ebe0; }
+::-webkit-scrollbar-thumb { background: #059669; border-radius: 3px; }

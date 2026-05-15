@@ -1,0 +1,60 @@
+
+> sikandar-sajjad-library@0.1.0 dev
+> next dev
+
+  ▲ Next.js 14.2.5
+  - Local:        http://localhost:3000
+  - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 10s
+ ○ Compiling /src/middleware ...
+ ✓ Compiled /src/middleware in 1415ms (138 modules)
+ ○ Compiling / ...
+<w> [webpack.cache.PackFileCacheStrategy] Serializing big strings (101kiB) impacts deserialization performance (consider using Buffer instead and decode when needed)
+<w> [webpack.cache.PackFileCacheStrategy] Serializing big strings (231kiB) impacts deserialization performance (consider using Buffer instead and decode when needed)
+ ⨯ ./src/app/globals.css:1:1
+Syntax error: C:\Users\Mr.Smart\sikandar-sajjad-library\src\app\globals.css The `border-border` class does not exist. If `border-border` is a custom class, make sure it is defined within a `@layer` directive.
+
+[1m[31m>[39m[22m[90m 1 | [39m[36m@tailwind[39m base[33m;[39m
+ [90m   | [39m[1m[31m^[39m[22m
+ [90m 2 | [39m[36m@tailwind[39m components[33m;[39m
+ [90m 3 | [39m[36m@tailwind[39m utilities[33m;[39m
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|C:\Users\Mr.Smart\sikandar-sajjad-library\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[13].oneOf[12].use[2]!C:\Users\Mr.Smart\sikandar-sajjad-library\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[13].oneOf[12].use[3]!C:\Users\Mr.Smart\sikandar-sajjad-library\src\app\globals.css': No serializer registered for PostCSSSyntaxError
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> webpack/lib/ModuleBuildError -> PostCSSSyntaxError
+ ⨯ ./src/app/globals.css:1:1
+Syntax error: C:\Users\Mr.Smart\sikandar-sajjad-library\src\app\globals.css The `border-border` class does not exist. If `border-border` is a custom class, make sure it is defined within a `@layer` directive.
+
+[1m[31m>[39m[22m[90m 1 | [39m[36m@tailwind[39m base[33m;[39m
+ [90m   | [39m[1m[31m^[39m[22m
+ [90m 2 | [39m[36m@tailwind[39m components[33m;[39m
+ [90m 3 | [39m[36m@tailwind[39m utilities[33m;[39m
+ GET / 500 in 23782ms
+'wmic' is not recognized as an internal or external command,
+operable program or batch file.
+<w> [webpack.cache.PackFileCacheStrategy] Skipped not serializable cache item 'Compilation/modules|C:\Users\Mr.Smart\sikandar-sajjad-library\node_modules\next\dist\build\webpack\loaders\css-loader\src\index.js??ruleSet[1].rules[13].oneOf[12].use[2]!C:\Users\Mr.Smart\sikandar-sajjad-library\node_modules\next\dist\build\webpack\loaders\postcss-loader\src\index.js??ruleSet[1].rules[13].oneOf[12].use[3]!C:\Users\Mr.Smart\sikandar-sajjad-library\src\app\globals.css': No serializer registered for PostCSSSyntaxError
+<w> while serializing webpack/lib/cache/PackFileCacheStrategy.PackContentItems -> webpack/lib/NormalModule -> webpack/lib/ModuleBuildError -> PostCSSSyntaxError
+'wmic' is not recognized as an internal or external command,
+operable program or batch file.
+ GET / 500 in 68ms
+ ✓ Compiled /_error in 2.3s (897 modules)
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1075ms (1148 modules)
+ ⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /_next/static/webpack/4aecc1b0951e17b1.webpack.hot-update.json 404 in 2054ms
+ ⚠ Fast Refresh had to perform a full reload due to a runtime error.
+ GET /_next/static/webpack/4aecc1b0951e17b1.webpack.hot-update.json 404 in 531ms
+ ○ Compiling / ...
+ ✓ Compiled / in 722ms (780 modules)
+ GET / 200 in 729ms
+ ⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+ GET / 200 in 330ms
+ GET / 200 in 218ms
+ GET /fonts/NotoNaskhArabic.woff2 404 in 117ms
+ GET /fonts/NotoNastaliqUrdu.woff2 404 in 89ms
+ GET /fonts/NotoNaskhArabic.woff2 404 in 87ms
+ GET /fonts/NotoNastaliqUrdu.woff2 404 in 84ms
+ GET /icons/icon-144x144.png 404 in 84ms
+ GET /icons/icon-144x144.png 404 in 58ms
+[?25h
