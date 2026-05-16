@@ -10,14 +10,16 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        // Brand palette
         emerald: {
-          950: "#022c22",
-          900: "#064e3b",
-          800: "#065f46",
-          700: "#047857",
-          600: "#059669",
-          500: "#10b981",
+          950: "#011a12",
+          900: "#022c22",
+          800: "#064e3b",
+          700: "#065f46",
+          600: "#047857",
+          500: "#059669",
+          400: "#10b981",
+          300: "#34d399",
+          200: "#6ee7b7",
         },
         gold: {
           50:  "#fffbeb",
@@ -38,25 +40,33 @@ const config: Config = {
           300: "#f5ead0",
         },
         sand: {
+          50:  "#faf7f2",
           100: "#f5f0e8",
           200: "#ede4d3",
           300: "#d9cbb8",
           400: "#c4b49d",
+          500: "#9e8a72",
+          600: "#7a6b57",
         },
         navy: {
-          900: "#0a1628",
-          800: "#0f2044",
-          700: "#1a3260",
-          600: "#1e3a8a",
+          950: "#020810",
+          900: "#030d1c",
+          800: "#071428",
+          700: "#0a1e3d",
+          600: "#0f2a52",
+          500: "#1a3a6b",
         },
-        // Semantic aliases
-        brand: {
-          primary:    "#059669",   // emerald-600
-          secondary:  "#d97706",   // gold-600
-          background: "#fdf8f0",   // ivory-100
-          surface:    "#ffffff",
-          text:       "#0a1628",   // navy-900
-          muted:      "#6b7280",
+        cosmic: {
+          dark:  "#020810",
+          mid:   "#040f1e",
+          light: "#071830",
+          glow:  "#0a2540",
+        },
+        noor: {
+          gold:    "#fbbf24",
+          emerald: "#10b981",
+          white:   "#f0f9ff",
+          soft:    "#fef3c7",
         },
       },
       fontFamily: {
@@ -66,31 +76,97 @@ const config: Config = {
         display: ["Playfair Display", "serif"],
       },
       backgroundImage: {
-        "hero-pattern":     "url('/images/hero-bg.webp')",
-        "emerald-gradient": "linear-gradient(135deg, #022c22 0%, #065f46 50%, #047857 100%)",
-        "gold-gradient":    "linear-gradient(135deg, #78350f 0%, #b45309 50%, #d97706 100%)",
+        "cosmic-gradient":   "linear-gradient(135deg, #020810 0%, #030d1c 40%, #022c22 100%)",
+        "hero-gradient":     "radial-gradient(ellipse at 30% 50%, #022c22 0%, #020810 60%, #030d1c 100%)",
+        "emerald-gradient":  "linear-gradient(135deg, #022c22 0%, #065f46 50%, #047857 100%)",
+        "gold-gradient":     "linear-gradient(135deg, #78350f 0%, #b45309 50%, #d97706 100%)",
+        "noor-glow":         "radial-gradient(circle at center, rgba(251,191,36,0.15) 0%, transparent 70%)",
+        "galaxy-glow":       "radial-gradient(circle at center, rgba(16,185,129,0.2) 0%, transparent 70%)",
+        "manuscript-bg":     "linear-gradient(135deg, #fdf8f0 0%, #faf3e3 100%)",
+        "planet-emerald":    "radial-gradient(circle at 35% 35%, #34d399, #047857, #022c22)",
+        "planet-gold":       "radial-gradient(circle at 35% 35%, #fcd34d, #d97706, #78350f)",
+        "planet-navy":       "radial-gradient(circle at 35% 35%, #1a3a6b, #071428, #020810)",
+        "planet-purple":     "radial-gradient(circle at 35% 35%, #c084fc, #7c3aed, #3b0764)",
+        "planet-rose":       "radial-gradient(circle at 35% 35%, #fb7185, #e11d48, #881337)",
+        "planet-amber":      "radial-gradient(circle at 35% 35%, #fbbf24, #b45309, #78350f)",
+        "planet-teal":       "radial-gradient(circle at 35% 35%, #2dd4bf, #0d9488, #134e4a)",
+        "planet-indigo":     "radial-gradient(circle at 35% 35%, #818cf8, #4338ca, #1e1b4b)",
+        "planet-cyan":       "radial-gradient(circle at 35% 35%, #22d3ee, #0891b2, #164e63)",
+        "planet-lime":       "radial-gradient(circle at 35% 35%, #a3e635, #65a30d, #365314)",
       },
       borderRadius: {
         "4xl": "2rem",
+        "5xl": "2.5rem",
+      },
+      boxShadow: {
+        "noor":        "0 0 30px rgba(251,191,36,0.25), 0 0 60px rgba(251,191,36,0.1)",
+        "noor-sm":     "0 0 15px rgba(251,191,36,0.2)",
+        "emerald-glow":"0 0 30px rgba(16,185,129,0.3), 0 0 60px rgba(16,185,129,0.1)",
+        "emerald-sm":  "0 0 15px rgba(16,185,129,0.25)",
+        "cosmic":      "0 25px 60px rgba(2,8,16,0.8), 0 10px 30px rgba(2,8,16,0.5)",
+        "glass":       "0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1)",
+        "card-hover":  "0 20px 60px rgba(2,40,34,0.2), 0 0 0 1px rgba(16,185,129,0.1)",
+        "planet":      "0 0 40px rgba(16,185,129,0.4), 0 0 80px rgba(16,185,129,0.1), inset 0 0 30px rgba(0,0,0,0.3)",
       },
       animation: {
-        "fade-in":    "fadeIn 0.6s ease-out",
-        "slide-up":   "slideUp 0.5s ease-out",
-        "shimmer":    "shimmer 1.5s infinite",
+        "fade-in":       "fadeIn 0.6s ease-out",
+        "fade-up":       "fadeUp 0.7s ease-out",
+        "slide-up":      "slideUp 0.5s ease-out",
+        "shimmer":       "shimmer 1.5s infinite",
+        "float":         "float 6s ease-in-out infinite",
+        "float-slow":    "float 10s ease-in-out infinite",
+        "twinkle":       "twinkle 3s ease-in-out infinite",
+        "orbit":         "orbit 20s linear infinite",
+        "orbit-reverse": "orbit 30s linear infinite reverse",
+        "noor-pulse":    "noorPulse 3s ease-in-out infinite",
+        "spin-slow":     "spin 30s linear infinite",
+        "glow-pulse":    "glowPulse 2s ease-in-out infinite",
+        "text-shimmer":  "textShimmer 3s linear infinite",
       },
       keyframes: {
         fadeIn: {
           "0%":   { opacity: "0" },
           "100%": { opacity: "1" },
         },
+        fadeUp: {
+          "0%":   { opacity: "0", transform: "translateY(30px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
         slideUp: {
           "0%":   { transform: "translateY(20px)", opacity: "0" },
-          "100%": { transform: "translateY(0)",    opacity: "1" },
+          "100%": { transform: "translateY(0)", opacity: "1" },
         },
         shimmer: {
           "0%":   { backgroundPosition: "-200% 0" },
-          "100%": { backgroundPosition:  "200% 0" },
+          "100%": { backgroundPosition: "200% 0" },
         },
+        float: {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%":      { transform: "translateY(-20px)" },
+        },
+        twinkle: {
+          "0%, 100%": { opacity: "0.3", transform: "scale(0.8)" },
+          "50%":      { opacity: "1",   transform: "scale(1.2)" },
+        },
+        orbit: {
+          "0%":   { transform: "rotate(0deg) translateX(120px) rotate(0deg)" },
+          "100%": { transform: "rotate(360deg) translateX(120px) rotate(-360deg)" },
+        },
+        noorPulse: {
+          "0%, 100%": { opacity: "0.4", transform: "scale(1)" },
+          "50%":      { opacity: "0.8", transform: "scale(1.1)" },
+        },
+        glowPulse: {
+          "0%, 100%": { boxShadow: "0 0 20px rgba(251,191,36,0.3)" },
+          "50%":      { boxShadow: "0 0 40px rgba(251,191,36,0.6), 0 0 80px rgba(251,191,36,0.2)" },
+        },
+        textShimmer: {
+          "0%":   { backgroundPosition: "-200% center" },
+          "100%": { backgroundPosition: "200% center" },
+        },
+      },
+      backdropBlur: {
+        xs: "2px",
       },
     },
   },

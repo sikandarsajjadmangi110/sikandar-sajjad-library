@@ -8,42 +8,53 @@
   src: url("/fonts/NotoNastaliqUrdu.woff2") format("woff2");
   font-display: swap;
 }
-
 @font-face {
   font-family: "Noto Naskh Arabic";
   src: url("/fonts/NotoNaskhArabic.woff2") format("woff2");
   font-display: swap;
 }
 
-/* ── Base Reset ── */
+/* ── CSS Variables ── */
 @layer base {
   :root {
-    --background:       250 248 240;
+    --background:       253 248 240;
     --foreground:       10  22  40;
     --card:             255 255 255;
     --card-foreground:  10  22  40;
-    --primary:          5   150 105;
+    --primary:          4   120 87;
     --primary-foreground: 255 255 255;
     --secondary:        217 119 6;
     --secondary-foreground: 255 255 255;
     --muted:            245 240 232;
     --muted-foreground: 107 114 128;
     --border:           229 221 210;
-    --radius:           0.5rem;
+    --radius:           0.75rem;
+
+    /* Universe tokens */
+    --cosmic-1: #020810;
+    --cosmic-2: #030d1c;
+    --cosmic-3: #040f1e;
+    --noor-gold: rgba(251, 191, 36, 0.15);
+    --noor-emerald: rgba(16, 185, 129, 0.2);
+    --star-color: rgba(255, 255, 255, 0.8);
   }
 
   .dark {
-    --background:       10  22  40;
+    --background:       3   13  28;
     --foreground:       253 248 240;
-    --card:             15  32  68;
+    --card:             4   15  32;
     --card-foreground:  253 248 240;
-    --muted:            26  50  96;
+    --muted:            7   20  40;
     --muted-foreground: 156 163 175;
-    --border:           30  58 138;
+    --border:           10  30  60;
   }
 
   * {
     border-color: rgb(var(--border));
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 
   body {
@@ -51,7 +62,10 @@
     font-feature-settings: "kern" 1, "liga" 1;
   }
 
-  /* RTL support for Urdu/Arabic */
+  .dark body {
+    @apply bg-cosmic-dark text-ivory-100;
+  }
+
   [dir="rtl"] {
     font-family: theme("fontFamily.urdu");
     line-height: 2;
@@ -60,74 +74,286 @@
   .arabic-text {
     font-family: theme("fontFamily.arabic");
     direction: rtl;
-    line-height: 2.2;
+    line-height: 2.4;
+    letter-spacing: 0.02em;
   }
 
   .urdu-text {
     font-family: theme("fontFamily.urdu");
     direction: rtl;
-    line-height: 2.4;
+    line-height: 2.6;
   }
 }
 
-/* ── Component Utilities ── */
+/* ── Design System Components ── */
 @layer components {
+
+  /* ── Buttons ── */
   .btn-primary {
-    @apply bg-emerald-600 hover:bg-emerald-700 text-white font-semibold
-           px-6 py-3 rounded-xl transition-all duration-200
-           shadow-md hover:shadow-lg active:scale-95;
+    @apply bg-emerald-500 hover:bg-emerald-600 text-white font-semibold
+           px-6 py-3 rounded-xl transition-all duration-300
+           shadow-emerald-sm hover:shadow-emerald-glow active:scale-95
+           hover:-translate-y-0.5;
   }
 
   .btn-secondary {
-    @apply bg-gold-600 hover:bg-gold-700 text-white font-semibold
-           px-6 py-3 rounded-xl transition-all duration-200
-           shadow-md hover:shadow-lg active:scale-95;
+    @apply bg-gold-600 hover:bg-gold-500 text-white font-semibold
+           px-6 py-3 rounded-xl transition-all duration-300
+           shadow-noor-sm hover:shadow-noor active:scale-95
+           hover:-translate-y-0.5;
   }
 
   .btn-outline {
-    @apply border-2 border-emerald-600 text-emerald-700 hover:bg-emerald-50
-           font-semibold px-6 py-3 rounded-xl transition-all duration-200;
+    @apply border-2 border-emerald-500 text-emerald-600 hover:bg-emerald-50
+           font-semibold px-6 py-3 rounded-xl transition-all duration-300
+           hover:border-emerald-600;
   }
 
+  .btn-ghost-light {
+    @apply bg-white/10 hover:bg-white/20 backdrop-blur-sm
+           border border-white/20 hover:border-white/40
+           text-white font-semibold px-6 py-3 rounded-xl
+           transition-all duration-300 hover:-translate-y-0.5;
+  }
+
+  .btn-cosmic {
+    @apply bg-cosmic-glow/80 hover:bg-cosmic-glow border border-emerald-800/50
+           hover:border-emerald-500/60 text-white font-semibold
+           px-6 py-3 rounded-xl transition-all duration-300 backdrop-blur-sm
+           hover:shadow-emerald-sm hover:-translate-y-0.5;
+  }
+
+  /* ── Cards ── */
   .card-library {
-    @apply bg-white rounded-2xl shadow-sm hover:shadow-md
-           border border-sand-200 transition-all duration-300
-           hover:-translate-y-1;
+    @apply bg-white rounded-2xl shadow-sm hover:shadow-card-hover
+           border border-sand-200 hover:border-emerald-200
+           transition-all duration-400 hover:-translate-y-1.5;
   }
 
+  .card-cosmic {
+    @apply rounded-2xl border border-white/10 bg-white/5
+           backdrop-blur-md shadow-glass
+           hover:border-emerald-500/30 hover:bg-white/8
+           transition-all duration-400 hover:-translate-y-1;
+  }
+
+  .card-manuscript {
+    @apply bg-ivory-100 rounded-2xl border border-sand-200
+           shadow-sm hover:shadow-card-hover
+           transition-all duration-300 hover:-translate-y-1;
+    background-image: linear-gradient(135deg, #fdf8f0 0%, #faf3e3 100%);
+  }
+
+  .card-glass {
+    @apply rounded-2xl backdrop-blur-md border border-white/15
+           bg-gradient-to-br from-white/10 to-white/5
+           shadow-glass transition-all duration-300;
+  }
+
+  /* ── Typography ── */
   .section-heading {
     @apply text-2xl md:text-3xl font-bold text-navy-900 font-display;
   }
 
-  .section-subheading {
-    @apply text-gold-700 text-sm font-semibold uppercase tracking-widest mb-2;
+  .section-heading-light {
+    @apply text-2xl md:text-3xl font-bold text-white font-display;
   }
 
-  .badge {
-    @apply inline-flex items-center gap-1 text-xs font-medium
-           px-2.5 py-1 rounded-full;
+  .section-subheading {
+    @apply text-gold-600 text-xs font-bold uppercase tracking-[0.2em] mb-2;
+  }
+
+  .section-subheading-light {
+    @apply text-gold-400 text-xs font-bold uppercase tracking-[0.2em] mb-2;
   }
 
   .gradient-text {
-    @apply bg-gradient-to-r from-emerald-700 to-gold-600
+    @apply bg-gradient-to-r from-emerald-500 via-gold-400 to-emerald-400
+           bg-clip-text text-transparent;
+    background-size: 200% auto;
+  }
+
+  .gradient-text-gold {
+    @apply bg-gradient-to-r from-gold-300 via-gold-200 to-gold-400
            bg-clip-text text-transparent;
   }
 
+  .noor-text {
+    text-shadow: 0 0 20px rgba(251, 191, 36, 0.5);
+  }
+
+  /* ── Badges ── */
+  .badge {
+    @apply inline-flex items-center gap-1 text-xs font-semibold
+           px-2.5 py-1 rounded-full;
+  }
+
+  .badge-verified {
+    @apply bg-emerald-100 text-emerald-800 border border-emerald-200;
+  }
+
+  .badge-scholar {
+    @apply bg-purple-100 text-purple-800 border border-purple-200;
+  }
+
+  .badge-cosmic {
+    @apply bg-white/10 text-white/90 border border-white/20 backdrop-blur-sm;
+  }
+
+  /* ── Islamic geometry border ── */
   .islamic-border {
-    @apply border-t-4 border-emerald-600;
+    @apply border-t-4;
+    border-image: linear-gradient(90deg, #059669, #d97706, #059669) 1;
+  }
+
+  /* ── Section divider with Islamic geometry ── */
+  .section-divider {
+    position: relative;
+    text-align: center;
+    margin: 0 auto;
+  }
+  .section-divider::before,
+  .section-divider::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(5, 150, 105, 0.4), transparent);
+  }
+  .section-divider::before { left: 0; }
+  .section-divider::after  { right: 0; }
+
+  /* ── Planet cards (Knowledge Galaxies) ── */
+  .planet-card {
+    @apply relative flex flex-col items-center gap-3 p-5 rounded-2xl
+           transition-all duration-500 cursor-pointer
+           border border-white/10 hover:border-white/25;
+    background: rgba(255,255,255,0.04);
+    backdrop-filter: blur(10px);
+  }
+  .planet-card:hover {
+    transform: translateY(-8px) scale(1.02);
+  }
+  .planet-card:hover .planet-orb {
+    box-shadow: 0 0 50px var(--planet-glow, rgba(16,185,129,0.5)),
+                0 0 100px var(--planet-glow, rgba(16,185,129,0.2));
+  }
+
+  .planet-orb {
+    @apply rounded-full flex items-center justify-center
+           transition-all duration-500;
+    box-shadow: 0 0 25px var(--planet-glow, rgba(16,185,129,0.4)),
+                0 0 50px var(--planet-glow, rgba(16,185,129,0.15));
+  }
+
+  /* ── Noor glow overlay ── */
+  .noor-overlay {
+    position: relative;
+  }
+  .noor-overlay::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 0%, rgba(251,191,36,0.08) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── Starfield background ── */
+  .star-bg {
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ── Hadith card ── */
+  .hadith-card {
+    @apply relative rounded-3xl overflow-hidden;
+    background: linear-gradient(135deg, #022c22 0%, #030d1c 100%);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+  }
+  .hadith-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 50% 0%, rgba(251,191,36,0.1) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  /* ── Geometric ornament ── */
+  .ornament {
+    display: inline-block;
+    color: #d97706;
+    font-size: 1.2em;
+    line-height: 1;
+    margin: 0 0.3em;
+    opacity: 0.7;
+  }
+
+  /* ── Trust badge ── */
+  .trust-badge {
+    @apply flex items-center gap-2 bg-emerald-950 text-emerald-300
+           text-xs px-3 py-1.5 rounded-full border border-emerald-800/60
+           transition-all duration-300 hover:border-emerald-500
+           hover:text-emerald-200 hover:shadow-emerald-sm;
+  }
+
+  /* ── Galaxy section ── */
+  .galaxy-section {
+    background:
+      radial-gradient(ellipse at 20% 50%, rgba(16,185,129,0.07) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 20%, rgba(251,191,36,0.05) 0%, transparent 40%),
+      radial-gradient(ellipse at 50% 90%, rgba(10,37,64,0.8) 0%, transparent 60%),
+      #020810;
+  }
+
+  /* ── Researcher mode card ── */
+  .researcher-feature {
+    @apply flex gap-4 p-4 rounded-2xl border border-sand-200 bg-white
+           hover:border-emerald-200 hover:shadow-sm transition-all duration-300;
   }
 }
 
-/* ── Shimmer Skeleton ── */
+/* ── Skeleton / Shimmer ── */
 .skeleton {
-  background: linear-gradient(
-    90deg,
-    #f0ebe0 25%,
-    #e5ddd0 50%,
-    #f0ebe0 75%
-  );
+  background: linear-gradient(90deg, #f0ebe0 25%, #e5ddd0 50%, #f0ebe0 75%);
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
+}
+.skeleton-dark {
+  background: linear-gradient(90deg, #071428 25%, #0a1e3d 50%, #071428 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* ── Stars CSS-generated ── */
+.stars-sm,
+.stars-md,
+.stars-lg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* ── Islamic geometry SVG pattern ── */
+.geometry-overlay {
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpolygon fill='%23ffffff' points='50,5 61,35 95,35 68,57 79,91 50,70 21,91 32,57 5,35 39,35'/%3E%3C/svg%3E");
+  background-size: 80px 80px;
+}
+
+/* ── Geometric border pattern ── */
+.geo-border-top {
+  border-top: 2px solid transparent;
+  border-image: repeating-linear-gradient(
+    90deg,
+    #059669 0px, #059669 10px,
+    transparent 10px, transparent 14px,
+    #d97706 14px, #d97706 24px,
+    transparent 24px, transparent 28px
+  ) 1;
 }
 
 /* ── PDF Reader ── */
@@ -136,7 +362,49 @@
   height: auto !important;
 }
 
-/* ── Scrollbar Styling ── */
-::-webkit-scrollbar       { width: 6px; }
+/* ── Scrollbar ── */
+::-webkit-scrollbar       { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: #f0ebe0; }
-::-webkit-scrollbar-thumb { background: #059669; border-radius: 3px; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #059669, #d97706);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover { background: #047857; }
+
+/* ── Dark mode scrollbar ── */
+.dark ::-webkit-scrollbar-track { background: #030d1c; }
+.dark ::-webkit-scrollbar-thumb { background: linear-gradient(180deg, #065f46, #b45309); }
+
+/* ── Selection color ── */
+::selection {
+  background: rgba(16, 185, 129, 0.25);
+  color: inherit;
+}
+
+/* ── Focus ring ── */
+:focus-visible {
+  outline: 2px solid #059669;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ── Transition duration-400 ── */
+.duration-400 {
+  transition-duration: 400ms;
+}
+
+/* ── Hover scale-102 ── */
+.hover\:scale-102:hover {
+  transform: scale(1.02);
+}
+
+/* ── Text balance ── */
+h1, h2, h3 {
+  text-wrap: balance;
+}
+
+/* ── RTL spacing fix ── */
+.rtl-fix {
+  letter-spacing: 0;
+  word-spacing: 0.1em;
+}
