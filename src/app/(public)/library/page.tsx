@@ -106,14 +106,18 @@ export default function LibraryPage({ searchParams }: PageProps) {
         <div className="flex gap-6 items-start">
           {/* Sidebar filters */}
           <aside className="w-64 flex-shrink-0 hidden lg:block">
-            <BookFilters />
+            <Suspense fallback={<div className="bg-white rounded-2xl border border-sand-200 p-5 h-96 animate-pulse" />}>
+              <BookFilters />
+            </Suspense>
           </aside>
 
           {/* Book grid */}
           <div className="flex-1 min-w-0">
-            {/* Mobile filter toggle — can add Sheet component here */}
+            {/* Mobile filter toggle */}
             <div className="lg:hidden mb-4">
-              <BookFilters />
+              <Suspense fallback={null}>
+                <BookFilters />
+              </Suspense>
             </div>
 
             <Suspense fallback={
