@@ -1,5 +1,5 @@
-import type { Book, BookFilters } from "@/types/book";
-import { MOCK_BOOKS } from "@/lib/mock/data";
+import type { Book, BookFilters, Author } from "@/types/book";
+import { MOCK_BOOKS, MOCK_AUTHORS } from "@/lib/mock/data";
 
 // ── Supabase availability check ───────────────────────────────
 function isSupabaseConfigured(): boolean {
@@ -162,4 +162,38 @@ export async function incrementBookView(bookId: string) {
   const { createClient } = await import("@/lib/supabase/server");
   const supabase = createClient();
   await supabase.rpc("increment_view_count", { book_id: bookId });
+}
+
+export async function getAuthorBySlug(slug: string): Promise<Author | null> {
+  if (!isSupabaseConfigured()) {
+    return MOCK_AUTHORS.find((a) => a.slug === slug) ?? null;
+  }
+  const { createClient } = await import("@/lib/supabase/server");
+  const supabase = createClient();
+  const { data } = await supabase.from("authors").select("*").eq("slug", slug).single();
+  return data as Author | null;
+}
+
+export async function getBooksByAuthor(authorSlug: string): Promise<Book[]> {
+  if (!isSupabaseConfigured()) {
+    return MOCK_BOOKS.filter((b) => b.author?.slug === authorSlug);
+  }
+  const { createClient } = await import("@/lib/supabase/server");
+  const supabase = createClient();
+  const { data: author } = await supabase.from("authors").select("id").eq("slug", authorSlug).single();
+  if (!author) return [];
+  const { data } = await supabase
+    .from("books")
+    .select(`*, author:authors(*), category:categories(*), badges:book_badges(badge:badge_types(*))`)
+    .eq("author_id", author.id)
+    .order("created_at", { ascending: false });
+  return (data ?? []) as Book[];
+}
+
+export async function getAllAuthors(): Promise<Author[]> {
+  if (!isSupabaseConfigured()) return MOCK_AUTHORS;
+  const { createClient } = await import("@/lib/supabase/server");
+  const supabase = createClient();
+  const { data } = await supabase.from("authors").select("*").order("name");
+  return (data ?? []) as Author[];
 }
