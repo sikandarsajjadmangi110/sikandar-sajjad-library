@@ -8,10 +8,6 @@ function isSupabaseConfigured(): boolean {
 export async function middleware(request: NextRequest) {
   // If Supabase is not configured (demo mode), allow all routes
   if (!isSupabaseConfigured()) {
-    // Redirect /dashboard and /admin to home in demo mode
-    if (request.nextUrl.pathname.startsWith("/dashboard")) {
-      return NextResponse.redirect(new URL("/?demo=1", request.url));
-    }
     return NextResponse.next();
   }
 

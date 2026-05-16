@@ -107,18 +107,23 @@ export default function ReaderPage() {
               <p className="text-center text-sm text-sand-500 mb-6">
                 — Page {page} —
               </p>
-              {/* In production: render PDF page via react-pdf <Page> component */}
-              <div className="flex flex-col items-center justify-center h-96 gap-4">
-                <div className="w-16 h-20 bg-sand-100 rounded-lg flex items-center justify-center">
-                  <AlignLeft className="w-8 h-8 text-sand-400" />
+              <div className="flex flex-col items-center justify-center h-96 gap-5">
+                <div className="w-20 h-24 bg-emerald-50 rounded-2xl flex items-center justify-center border border-emerald-100">
+                  <AlignLeft className="w-10 h-10 text-emerald-400" />
                 </div>
-                <p className="text-sand-400 text-sm text-center max-w-xs">
-                  Connect your PDF storage URL here. This reader supports react-pdf for
-                  in-browser rendering with all toolbar controls active.
-                </p>
-                <code className="text-xs bg-sand-100 px-3 py-1.5 rounded-lg text-sand-600">
-                  {"<Document file={book.pdf_url}><Page pageNumber={page} /></Document>"}
-                </code>
+                <div className="text-center max-w-sm">
+                  <p className="font-semibold text-navy-800 text-lg mb-2">PDF Coming Soon</p>
+                  <p className={`text-sm leading-relaxed ${nightMode ? "text-gray-400" : "text-sand-500"}`}>
+                    This book is being digitized and will be available for online reading shortly.
+                    You can download the PDF when available.
+                  </p>
+                </div>
+                <Link
+                  href={`/book/${params.slug}`}
+                  className="btn-primary text-sm px-6 py-2.5 flex items-center gap-2"
+                >
+                  <AlignLeft className="w-4 h-4" /> View Book Details
+                </Link>
               </div>
             </div>
           </div>
