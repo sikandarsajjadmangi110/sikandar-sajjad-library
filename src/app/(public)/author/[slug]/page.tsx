@@ -28,7 +28,7 @@ export default async function AuthorPage({ params }: PageProps) {
 
   const verified = books.filter((b) => b.verification_status === "verified").length;
   const pdfAvailable = books.filter((b) => b.pdf_available).length;
-  const languages = [...new Set(books.map((b) => b.language))];
+  const languages = Array.from(new Set(books.map((b) => b.language)));
 
   const LANGUAGE_LABEL: Record<string, string> = {
     en: "English",
